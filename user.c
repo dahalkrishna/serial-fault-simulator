@@ -298,7 +298,18 @@ void Gate (NODE *graph,int node)
 				}
 				graph[node].Cval = NOTG[op];
 		break;
-		
+		case XOR:
+				if(graph[fan_in->id].Cval == graph[fan_in->next->id].Cval)
+					graph[node].Cval = 0;
+				else 
+					graph[node].Cval = 0;
+		break;
+		case XNOR:
+				if(graph[fan_in->id].Cval == graph[fan_in->next->id].Cval)
+					graph[node].Cval = 1;
+				else 
+					graph[node].Cval = 0;
+		break;
 		default:
 			printf("Unknown gate type");
 			exit(1);
